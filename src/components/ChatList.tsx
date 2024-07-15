@@ -23,12 +23,20 @@ const ChatList: FC<ChatListProps> = ({ setSidebarOpen }) => {
 
   const handleScroll = () => {
     const sidebar = sidebarRef.current;
-    if (
-      sidebar &&
-      sidebar.scrollHeight - sidebar.scrollTop <= sidebar.clientHeight + 1
-    ) {
-      setPage((prev) => prev + 1);
-      console.log("Reached bottom, loading more...");
+    if (sidebar) {
+      console.log(
+        "Scrolling:",
+        sidebar.scrollHeight,
+        sidebar.scrollTop,
+        sidebar.clientHeight
+      );
+      if (
+        sidebar.scrollHeight - sidebar.scrollTop <=
+        sidebar.clientHeight + 1
+      ) {
+        console.log("Reached bottom, loading more...");
+        setPage((prev) => prev + 1);
+      }
     }
   };
 
@@ -101,7 +109,7 @@ const ChatList: FC<ChatListProps> = ({ setSidebarOpen }) => {
           setOriginalData((prev) => [...prev, ...newMsgData]);
         }
       } catch (err) {
-        console.log(err);
+        console.log("Error fetching data:", err);
       }
       setLoading(false);
     };
@@ -183,9 +191,6 @@ const ChatList: FC<ChatListProps> = ({ setSidebarOpen }) => {
             <p className="text-gray-400 font-semibold text-xs">
               {item?.msgDate && getMessageTime(item?.msgDate, false)}
             </p>
-            {/* <p className="p-1 rounded-full bg-gray-600 w-5 h-5 flex items-center justify-center text-xs text-white mt-1">
-              5
-            </p> */}
           </div>
         </Link>
       ))}
