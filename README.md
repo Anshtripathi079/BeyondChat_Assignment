@@ -17,7 +17,12 @@ npm install
 npm run dev
 ```
 
-Above command will run the app on your local machine.
+## Demo
+
+
+https://github.com/user-attachments/assets/cf79432d-ad07-407c-9dfb-eb7d7ac78173
+
+
 
 ## Tech Stack
 
